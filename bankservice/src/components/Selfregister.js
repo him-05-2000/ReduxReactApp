@@ -16,6 +16,8 @@ export default function RegistrationForm() {
 
     const [errors, setErrors] = useState({});
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const [accountNumber, setAccountNumber] = useState(null);
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -56,11 +58,11 @@ export default function RegistrationForm() {
         // Check if there are no errors in the form
         return Object.keys(errors).length === 0;
     };
-    
+
     const generateAccountNumber = () => {
         return Math.floor(Math.random() * 1000000000); // 9-digit account number
     };
-    
+
     const resetForm = () => {
         setFormData({
             ...formData,
@@ -74,7 +76,7 @@ export default function RegistrationForm() {
         });
         setRegistrationSuccess(false); // Reset registration success state
     };
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -93,11 +95,8 @@ export default function RegistrationForm() {
 
             try {
                 await axios.post("http://localhost:3000/users", user);
-                setFormData({
-                    ...formData,
-                    accountNumber,
-                });
                 resetForm();
+                setAccountNumber(accountNumber);
                 setRegistrationSuccess(true);
 
             } catch (error) {
@@ -112,11 +111,12 @@ export default function RegistrationForm() {
             <div className='row'>
                 <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
                     <h2 className="text-center text-primary">Registration</h2>
-                    {registrationSuccess && (
+                    {registrationSuccess && accountNumber !== null && (
                         <div className="alert alert-success">
-                            Registration Successful. Your account number is {formData.accountNumber}.
+                            Registration Successful. Your account number is {accountNumber}.
                         </div>
                     )}
+
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="mb-3">
                             <label htmlFor="fullName" className="form-label">Full Name</label>
