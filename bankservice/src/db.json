@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "fullName": "Namandeep Singh",
+      "email": "naman@gmail.com",
+      "contactNumber": "1234567890",
+      "address": "Korba",
+      "dob": "2023-09-22",
+      "ssn": "123456",
+      "accountType": "checking",
+      "accountNumber": 965955596,
+      "balance": 0,
+      "id": 1
+    },
+    {
+      "fullName": "Shubham arora",
+      "email": "shub77@gmail.com",
+      "contactNumber": "1234567890",
+      "address": "Korba",
+      "dob": "2023-09-08",
+      "ssn": "123456",
+      "accountType": "savings",
+      "accountNumber": 116808770,
+      "balance": 0,
+      "id": 2
+    },
+    {
+      "fullName": "Manpreet Kaur",
+      "email": "man31preet@gmail.com",
+      "contactNumber": "1234567890",
+      "address": "Korba",
+      "dob": "2023-09-20",
+      "ssn": "123456",
+      "accountType": "savings",
+      "accountNumber": 674811327,
+      "balance": 0,
+      "id": 3
+    },
+    {
+      "fullName": "Rohit Kumar",
+      "email": "rohit@gmail.com",
+      "contactNumber": "1234567891",
+      "address": "Korba",
+      "dob": "2023-09-16",
+      "ssn": "123456",
+      "accountType": "checking",
+      "accountNumber": 2636316,
+      "balance": 0,
+      "id": 4
+    }
+  ]
+}

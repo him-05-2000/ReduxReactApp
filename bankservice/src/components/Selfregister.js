@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 export default function RegistrationForm() {
 
     const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ export default function RegistrationForm() {
     });
 
     const [errors, setErrors] = useState({});
-    
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -59,6 +60,21 @@ export default function RegistrationForm() {
     const generateAccountNumber = () => {
         return Math.floor(Math.random() * 1000000000); // 9-digit account number
     };
+    
+    const resetForm = () => {
+        setFormData({
+            ...formData,
+            fullName: '',
+            email: '',
+            contactNumber: '',
+            address: '',
+            dob: '',
+            ssn: '',
+            accountType: 'savings',
+        });
+        setRegistrationSuccess(false); // Reset registration success state
+    };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,14 +94,11 @@ export default function RegistrationForm() {
             try {
                 await axios.post("http://localhost:3000/users", user);
                 setFormData({
-                    fullName: '',
-                    email: '',
-                    contactNumber: '',
-                    address: '',
-                    dob: '',
-                    ssn: '',
-                    accountType: 'savings',
+                    ...formData,
+                    accountNumber,
                 });
+                resetForm();
+                setRegistrationSuccess(true);
 
             } catch (error) {
                 console.error('Error:', error);
@@ -99,6 +112,11 @@ export default function RegistrationForm() {
             <div className='row'>
                 <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
                     <h2 className="text-center text-primary">Registration</h2>
+                    {registrationSuccess && (
+                        <div className="alert alert-success">
+                            Registration Successful. Your account number is {formData.accountNumber}.
+                        </div>
+                    )}
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="mb-3">
                             <label htmlFor="fullName" className="form-label">Full Name</label>
