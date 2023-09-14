@@ -1,6 +1,13 @@
+import Button from "react-bootstrap/Button";
+
 const Home = () => {
   return (
-    <h2>Home</h2>
-  )
-}
-export default Home
+    <>
+      <div className="container" style={{'justifyContent':'center','alignItems':'center'}}>
+        <Button variant="primary">Self-Register</Button>{" "}
+        <Button variant="primary">Register</Button>{" "}
+      </div>
+    </>
+  );
+};
+export default Home;
