@@ -1,20 +1,23 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter,createRoutesFromElements,RouterProvider,Route} from 'react-router-dom';
 import React from 'react';
+import Register from "./components/Register";
 import Selfregister from './components/Selfregister';
+import Home from './components/Home'
+import Navbar from './components/Navbar'
 
 function App() {
+   const router=createBrowserRouter(createRoutesFromElements(
+      <Route path="/" element={<Navbar />}>
+        <Route index element={<Home />}></Route>
+        <Route path="/Register" element={<Register />}></Route>
+        <Route path="/Selfregister" element={<Selfregister />}></Route>
+      </Route>
+   ))
   return (
-    <Router>
-        <div className="App">
-           <header className="App-header">
-              <h1>Banking App</h1>
-           </header>
-           <Routes>
-              <Route exact path="/register" element={<Selfregister />} />
-           </Routes>
-        </div>
-     </Router>
+ <div>
+  <RouterProvider router={router} />
+ </div>
   );
 }
 
